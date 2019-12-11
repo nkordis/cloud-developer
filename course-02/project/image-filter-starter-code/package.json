@@ -20,15 +20,15 @@
   },
   "homepage": "https://github.com/grutt/udacity-c2-image-filter#readme",
   "devDependencies": {
-    "@types/bluebird": "^3.5.27",
-    "@types/express": "^4.17.0",
-    "@types/node": "^11.13.17",
-    "ts-node-dev": "^1.0.0-pre.40",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "@types/bluebird": "^3.5.29",
+    "@types/express": "^4.17.2",
+    "@types/node": "^11.15.3",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "jimp": "^0.6.4"
+    "jimp": "^0.9.2"
   }
 }
