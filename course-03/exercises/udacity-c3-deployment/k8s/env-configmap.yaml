@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_MEDIA_BUCKET: udagram-kordis-dev
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: helloworld
+  POSTGRESS_DATABASE: udagramkordisdev
+  POSTGRESS_HOST: udagramkordisdev.cq9wqrjrk6cv.us-east-1.rds.amazonaws.com
+  URL: http://localhost:8100  
+metadata:
+  name: env-config
