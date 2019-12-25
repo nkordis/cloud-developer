@@ -25,7 +25,7 @@ Udagram is a simple cloud application developed alongside the Udacity Cloud Engi
 
     Open a new terminal windows and run: 
     kubectl port-forward service/frontend 8100:8100
-6. See the app
+6. See the app.
   Open a browser window at http://localhost:8100
     
 
