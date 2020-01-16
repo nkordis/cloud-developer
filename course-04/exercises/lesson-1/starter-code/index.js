@@ -15,7 +15,18 @@ exports.handler = async (event) => {
   let requestWasSuccessful
 
   const startTime = timeInMs()
-  await axios.get(url)
+
+  // Record metric values
+  try {
+    await axios.get(url)
+    requestWasSuccessful = true
+  } catch (e) {
+    requestWasSuccessful = false
+  } finally {
+    endTime = timeInMs()
+  }
+
+  const totalTime = endTime - startTime
 
   // Example of how to write a single data point
   // await cloudwatch.putMetricData({
