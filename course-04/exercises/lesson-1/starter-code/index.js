@@ -46,9 +46,28 @@ exports.handler = async (event) => {
      Namespace: 'Udacity/Serveless'
    }).promise()
 
+   await cloudwatch.putMetricData({
+    MetricData: [
+      {
+        MetricName: 'Latency',
+        Dimensions: [
+          {
+            Name: 'ServiceName',
+            Value: serviceName
+          }
+        ],
+        Unit: 'Milliseconds',
+        Value: totalTime
+      }
+    ],
+    Namespace: 'Udacity/Serveless'
+  }).promise()
+}
+
+
   // TODO: Record time it took to get a response
   // TODO: Record if a response was successful or not
-}
+
 
 function timeInMs() {
   return new Date().getTime()
