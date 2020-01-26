@@ -34,7 +34,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   await docClient.update(params).promise()
 
   return {
-    statusCode: 201,
+    statusCode: 204,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
