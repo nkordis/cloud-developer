@@ -8,7 +8,7 @@ import * as AWS  from 'aws-sdk'
 import * as uuid from 'uuid'
 
 const docClient = new AWS.DynamoDB.DocumentClient()
-const groupsTable = process.env.TODOS_TABLE
+const todosTable = process.env.TODOS_TABLE
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   console.log('Processing event: ', event)
@@ -24,7 +24,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   }
 
   await docClient.put({
-    TableName: groupsTable,
+    TableName: todosTable,
     Item: newItem
   }).promise()
 
