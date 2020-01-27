@@ -36,7 +36,10 @@ custom:
     models:
       - name: CreateTodoRequest
         contentType: application/json
-        schema: ${file(src/models/create-todo-request.json)}    
+        schema: ${file(src/models/create-todo-request.json)}
+      - name: UpdateTodoRequest
+        contentType: application/json
+        schema: ${file(src/models/update-todo-request.json)}    
 
 functions:
 
@@ -75,6 +78,12 @@ functions:
          method: patch
          path: todos/{todoId}
          cors: true
+         reqValidatorName: RequestBodyValidator
+         documentation:
+          summary: Update TODO
+          description: Update TODO
+          requestModels:
+            'application/json': UpdateTodoRequest
 
   # TODO: Configure this function
   DeleteTodo:
