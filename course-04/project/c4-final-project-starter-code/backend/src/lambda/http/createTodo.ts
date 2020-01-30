@@ -6,18 +6,25 @@ import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
 
 import * as AWS  from 'aws-sdk'
 import * as uuid from 'uuid'
+import { parseUserId } from '../../auth/utils'
+import { createLogger } from '../../utils/logger'
 
+const logger = createLogger('createTodo')
 const docClient = new AWS.DynamoDB.DocumentClient()
 const todosTable = process.env.TODOS_TABLE
 const bucketName = process.env.TODOS_S3_BUCKET
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  console.log('Processing event: ', event)
+  logger.info('Processing event: ', event)
   const itemId = uuid.v4()
   const newTodo: CreateTodoRequest = JSON.parse(event.body)
+  const authorization = event.headers.Authorization 
+  const split = authorization.split(' ')
+  const jwtToken = split[1]
 
   // TODO: Implement creating a new TODO item 
   const newItem = {
+    userId: parseUserId(jwtToken),
     todoId: itemId,
     createdAt : new Date().toISOString(),
     ...newTodo,
