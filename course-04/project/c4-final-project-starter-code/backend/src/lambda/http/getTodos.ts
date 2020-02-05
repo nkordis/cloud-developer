@@ -6,7 +6,7 @@ import * as AWS  from 'aws-sdk'
 import { parseUserId } from '../../auth/utils'
 import { createLogger } from '../../utils/logger'
 
-const logger = createLogger('createTodo')
+const logger = createLogger('getTodo')
 const docClient = new AWS.DynamoDB.DocumentClient()
 
 const todosTable = process.env.TODOS_TABLE
@@ -29,15 +29,18 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     }
 }).promise()
 
-if (result.Count !== 0) {
+const items = result.Items
+
   return {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify(result.Items)
+    body: JSON.stringify({
+      items
+    })
   }
-}
+
 
 return {
   statusCode: 404,
