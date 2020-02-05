@@ -17,6 +17,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   const url = getUploadUrl(todoId)
   return {
     statusCode: 201,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify({
       uploadUrl: url
     })
