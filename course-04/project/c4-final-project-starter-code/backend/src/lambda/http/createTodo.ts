@@ -22,9 +22,18 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   const split = authorization.split(' ')
   const jwtToken = split[1]
 
-  // TODO: Implement creating a new TODO item 
+  //a new TODO item to store
   const newItem = {
     userId: parseUserId(jwtToken),
+    todoId: itemId,
+    createdAt : new Date().toISOString(),
+    ...newTodo,
+    done: false,
+    attachmentUrl: `https://${bucketName}.s3.amazonaws.com/${itemId}`
+  }
+
+//item to return
+  const item = {
     todoId: itemId,
     createdAt : new Date().toISOString(),
     ...newTodo,
@@ -43,7 +52,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
       'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({
-      newItem
+      item
     })
   }
 }
