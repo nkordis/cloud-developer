@@ -8,6 +8,11 @@ plugins:
   - serverless-aws-documentation
 
 provider:
+
+  tracing:
+    lambda: true
+    ApiGateway: true
+
   name: aws
   runtime: nodejs12.x
 
