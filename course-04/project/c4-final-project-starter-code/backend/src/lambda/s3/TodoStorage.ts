@@ -1,4 +1,7 @@
 import * as AWS from 'aws-sdk'
+import { createLogger } from '../../utils/logger'
+
+const logger = createLogger('todosStorage')
 
 export class TodoStorage {
 
@@ -11,6 +14,8 @@ export class TodoStorage {
     ) { }
 
     getUploadUrl(todoId: string) {
+        logger.info('Getting the url to upload the bucket')
+
         return this.s3.getSignedUrl('putObject', {
             Bucket: this.bucketName,
             Key: todoId,
